@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { userLogin } from '../../api/user.js'
 import { setUser } from '../../utils/storage.js'
 export default {
@@ -80,18 +81,25 @@ export default {
   },
   methods: {
     async onLogin () {
+      // 开启按钮上的loading效果
       this.loginLoading = true
       try {
         const res = await userLogin(this.user.mobile, this.user.code)
-        this.$message({ message: '登录成功', type: 'success' })
-        this.loading = false
+        // await取出promise中的then(res)中的res值
+        this.$message({ message: '登陆成功', type: 'success' })
+        this.loginLoading = false
         setUser(res.data.data)
         this.$router.push('/')
       } catch (err) {
+        // 登陆出错了
         this.$message.error('登陆出错了')
+        console.log(err)
+        // 关闭loading状态
         this.loginLoading = false
-      };
+      }
+      // this.$router.push('/')
     }
+
   }
 }
 </script>

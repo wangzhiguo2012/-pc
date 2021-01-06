@@ -83,14 +83,14 @@
               icon="el-icon-edit"
               type="primary"
               circle
-              @click="hEdit(scope.$index, scope.row)"
+              @click="hEdit(scope.row)"
             ></el-button>
             <el-button
               size="mini"
               type="danger"
               icon="el-icon-delete"
               circle
-              @click="hDelete(scope.$index, scope.row)"
+              @click="hDelete(scope.row)"
             ></el-button>
           </template>
         </el-table-column>
@@ -126,7 +126,7 @@ export default {
       articles: [], // 文章列表
       curPage: 1,
       total_count: 0,
-      channelS: [],
+      channels: [],
       loading: false
     }
   },
@@ -136,7 +136,7 @@ export default {
   computed: {},
   watch: {},
   created () {
-    this.loadAricles()
+    this.loadArticles()
     this.loadChannels()
   },
   mounted () {},
@@ -144,7 +144,7 @@ export default {
     onSubmit () {
       console.log('submit!')
     },
-    loadAricles () {
+    loadArticles () {
       let beginPubdate = null
       if (this.form.date) {
         beginPubdate = this.form.date[0]
@@ -189,7 +189,7 @@ export default {
     hPageChange (curPage) {
       this.curPage = curPage
       // 2. 再发请求
-      this.loadAricles()
+      this.loadArticles()
     },
     loadChannels () {
       getArticleChannels().then(res => {

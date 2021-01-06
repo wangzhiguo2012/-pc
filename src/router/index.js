@@ -7,6 +7,7 @@ import Articles from '../views/articles/index.vue'
 import AddArticle from '../views/articles/add.vue'
 import NotFound from '../views/page404/index.vue'
 import EditArticle from '../views/articles/edit.vue'
+import Image from '../views/image/index.vue'
 
 Vue.use(VueRouter)
 
@@ -18,7 +19,8 @@ const routes = [
     children: [
       { path: '/articles', component: Articles },
       { path: '/addArticle', component: AddArticle },
-      { path: '/editArticle/:id', component: EditArticle }
+      { path: '/editArticle/:id', component: EditArticle },
+      { path: '/image', component: Image }
     ]
   },
   { path: '*', component: NotFound }
@@ -28,19 +30,19 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-router.beforeEach((to, from, next) => {
-  // console.log('路由导航守卫', to, from, next)
-  if (to.path === '/') {
-    const userInfo = getUser()
-    if (userInfo && userInfo.token) {
-      // 有就放行，
-      next()
-    } else {
-      next('/login')
-    }
-  } else {
-    // 如果不是去主页，直接放行
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   // console.log('路由导航守卫', to, from, next)
+//   if (to.path === '/') {
+//     const userInfo = getUser()
+//     if (userInfo && userInfo.token) {
+//       // 有就放行，
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   } else {
+//     // 如果不是去主页，直接放行
+//     next()
+//   }
+// })
 export default router

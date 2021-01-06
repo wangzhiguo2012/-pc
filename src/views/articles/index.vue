@@ -16,11 +16,7 @@
             <el-radio :label="4">已删除</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="频道">
-          <el-select v-model="form.channelId" placeholder="请选择频道" clearable>
-            <el-option v-for="channel in channels" :key="channel.id" :value="channel.id" :label="channel.name"></el-option>
-          </el-select>
-        </el-form-item>
+        <my-channels v-model="form.channelId"></my-channels>
         <el-form-item label="日期">
           <el-date-picker
                     v-model="form.date"
@@ -111,6 +107,7 @@
 </template>
 
 <script>
+import MyChannels from '@/components/MyChannels'
 import { getArticles, getArticleChannels, deleteArticle } from '../../api/article'
 import MyBreadcrumb from '../../components/MyBreadcrumb'
 export default {
@@ -131,6 +128,7 @@ export default {
     }
   },
   components: {
+    MyChannels,
     MyBreadcrumb
   },
   computed: {},

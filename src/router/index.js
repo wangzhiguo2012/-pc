@@ -8,7 +8,7 @@ import AddArticle from '../views/articles/add.vue'
 import NotFound from '../views/page404/index.vue'
 import EditArticle from '../views/articles/edit.vue'
 import Image from '../views/image/index.vue'
-
+import Home from '@/views/home/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +17,7 @@ const routes = [
     path: '/',
     component: Layout,
     children: [
+      { path: '', component: Home },
       { path: '/articles', component: Articles },
       { path: '/addArticle', component: AddArticle },
       { path: '/editArticle/:id', component: EditArticle },

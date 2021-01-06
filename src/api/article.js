@@ -20,3 +20,13 @@ export const deleteArticle = articleId => {
     url: '/mp/v1_0/articles/' + articleId
   })
 }
+export const addArticle = (isDraft, article) => {
+  return ajax({
+    method: 'POST',
+    url: '/mp/v1_0/articles',
+    params: {
+      draft: isDraft
+    },
+    data: article
+  })
+}

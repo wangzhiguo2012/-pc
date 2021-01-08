@@ -3,20 +3,25 @@
     <el-form>
     <my-channels @aaa='hAaa'></my-channels>
     </el-form>
+    <my-cover v-model="imgSrc"></my-cover>
   </div>
 </template>
 
 <script>
 // 引入MyChannels组件
 import MyChannels from '@/components/MyChannels'
+import MyCover from '@/components/MyCover'
 export default {
   name: 'Home',
   props: { },
   components: {
-    MyChannels
+    MyChannels,
+    MyCover
   },
   data () {
-    return { }
+    return {
+      imgSrc: 'http://toutiao.meiduo.site/Fk2YzxVPpu89_zmIFX75DtbD8atn'
+    }
   },
   computed: { },
   created () { },

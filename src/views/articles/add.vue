@@ -59,7 +59,7 @@ export default {
           { required: true, message: '请选择文章频道', trigger: 'blur' }
         ]
       },
-      edtiorOption: {
+      editorOption: {
         // 占位配置
         placeholder: '',
         modules: {
@@ -76,8 +76,8 @@ export default {
       },
       channels: [],
       article: {
-        title: '123',
-        content: '456',
+        title: '这里好文章，不读就错过了',
+        content: '今天不读书，明天就',
         cover: {
           type: 0,
           images: ''
@@ -98,7 +98,7 @@ export default {
   mounted () {},
   methods: {
     async hAddArticle (isDraft) {
-      this.$refs.form.validates(async (valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (valid) {
           try {
             const result = await addArticle(isDraft, this.article)

@@ -30,3 +30,15 @@ export const addArticle = (isDraft, article) => {
     data: article
   })
 }
+export const getArticle = id => ajax({ method: 'GET', url: '/mp/v1_0/articles/' + id })
+
+export const modArticle = (id, data) => {
+  return ajax({
+    method: 'PUT',
+    url: '/mp/v1_0/articles/' + id,
+    data: data,
+    params: {
+      draft: false
+    }
+  })
+}

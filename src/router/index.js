@@ -31,19 +31,19 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-// router.beforeEach((to, from, next) => {
-//   // console.log('路由导航守卫', to, from, next)
-//   if (to.path === '/') {
-//     const userInfo = getUser()
-//     if (userInfo && userInfo.token) {
-//       // 有就放行，
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   } else {
-//     // 如果不是去主页，直接放行
-//     next()
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  // console.log('路由导航守卫', to, from, next)
+  if (to.path === '/') {
+    const userInfo = getUser()
+    if (userInfo && userInfo.token) {
+      // 有就放行，
+      next()
+    } else {
+      next('/login')
+    }
+  } else {
+    // 如果不是去主页，直接放行
+    next()
+  }
+})
 export default router

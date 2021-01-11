@@ -5,14 +5,6 @@
         <my-breadcrumb>素材管理</my-breadcrumb>
       </div>
       <div style="padding-bottom:20px;">
-        <!-- 对于数据项：collect: false
-                当选中全部时，它的值是false
-                当选中收藏时，它的值是true
-
-            对于el-radio组件，可以通过label来设置当前项被中时的值
-            :label="false" 表示一个布尔值 false
-            label="false"  表示一个普通的字符串 'false'
-        -->
         <el-radio-group v-model="collect" @change="hCollectChange">
           <el-radio-button :label="false">全部</el-radio-button>
           <el-radio-button :label="true">收藏</el-radio-button>
@@ -46,15 +38,6 @@
           </div>
        </el-col>
       </el-row>
-
-      <!-- 分页 -->
-      <!-- 分页组件
-        它只是根据total和page-size来显示页码，而与具体的表格数据无关
-
-        1. total是总条数数；
-        默认情况，它会以每页10条进行计算总页数
-        2. current-change。当点击页码时，它会触发,会传入当前的页码。
-      -->
       <el-pagination
         style="margin-top:10px;"
         :hide-on-single-page="true"
@@ -65,23 +48,11 @@
         :total="total_count">
       </el-pagination>
     </el-card>
-
-    <!-- 上传图片文件的对话框 -->
     <el-dialog
       title="提示"
       :append-to-body="true"
       :visible.sync="dialogVisible"
       >
-      <!--
-        本质还是ajax技术在做上传。
-
-        action：上传地址
-        show-file-list:false，不需要显示已上传的文件列表
-        on-success： 上传成功之后的回调函数
-        before-upload: 上传之前对文件进行检测
-        name: 设置上传的文件参数名，要与后端接口中的要求一致。
-      -->
-
       <el-upload
         class="avatar-uploader"
         action="http://ttapi.research.itcast.cn/mp/v1_0/user/images"
@@ -90,13 +61,6 @@
         name="image"
         :show-file-list="false"
         :before-upload="beforeAvatarUpload">
-        <!--
-          如果当前有预览地址就说明图片上传成功了。
-          给用户展示这张图，用户成功地看到这张图时，关闭整个上传对话框。
-          图片的onload事件：
-          - 当你设置图片的src时，浏览器会去请求图片的资源，当图片请求回来之后
-          会一有一个事件触发出来，这个事件就是onload。
-        -->
         <el-image @load="hLoadImgOk" v-if="imgSrc" :src="imgSrc" class="avatar"></el-image>
         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
       </el-upload>
@@ -106,7 +70,6 @@
 </template>
 
 <script>
-// vuecli工具中，提供一个路径别名： @表示 src/  的绝对地址
 import MyBreadcrumb from '@/components/MyBreadcrumb'
 import { getImages, switchCollect, deleteImage } from '@/api/image.js'
 import { getUser } from '@/utils/storage.js'
@@ -205,7 +168,6 @@ export default {
       }
       return isJPG && isLt2M
     },
-    // 如果上传成功，则会把响应结果传给res
     hUploadSuccess (res) {
       console.log(res)
       // 保存上传成功之后的图片地址

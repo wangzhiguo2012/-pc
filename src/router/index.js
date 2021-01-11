@@ -10,6 +10,7 @@ import EditArticle from '../views/articles/edit.vue'
 import Image from '../views/image/index.vue'
 import Home from '@/views/home/index.vue'
 import comment from '@/views/comment/index.vue'
+import Fans from '@/views/fans/index.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,7 +24,8 @@ const routes = [
       { path: '/addArticle', component: AddArticle },
       { path: '/editArticle/:id', component: EditArticle },
       { path: '/image', component: Image },
-      { path: '/comment', component: Comment }
+      { path: '/comment', component: Comment },
+      { path: '/fans', component: Fans }
     ]
   },
   { path: '*', component: NotFound }

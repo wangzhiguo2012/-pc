@@ -41,20 +41,14 @@
       <!-- 数据列表 -->
       <el-table :data="articles" style="width: 100%" v-loading="loading">
         <el-table-column label="封面">
-          <el-radio-group v-model="article.cover.type" @change='article.cover.images=[]'>
-           <el-radio :label="1">单图</el-radio>
-           <el-radio :label="3">三图</el-radio>
-           <el-radio :label="0">无图</el-radio>
-           <el-radio :label="1">自动</el-radio>
-         </el-radio-group>
-          <el-form-item v-if="article.cover.type > 0" label="">
-            <el-row :gutter="10">
-              <el-col v-for="(item,idx) in article.cover.type" :key="idx" :xs="8" :sm="6" :md="6" :lg="4">
-                {{idx}}<my-cover v-model="article.cover.images[idx]"></my-cover>
-              </el-col>
-            </el-row>
-
-          </el-form-item>
+          <template slot-scope="scope">
+            <el-image :src='scope.row.cover.images[0]' style="width:150px;height:100px" lazy>
+              <div slot="placeholder" class="image-solt">
+                加载中
+                <span class="dot">...</span>
+              </div>
+            </el-image>
+          </template>
         </el-table-column>
         <el-table-column prop="title" label="标题"> </el-table-column>
         <el-table-column label="状态">
@@ -113,7 +107,7 @@
 import MyChannels from '@/components/MyChannels'
 import { getArticles, getArticleChannels, deleteArticle } from '../../api/article'
 import MyBreadcrumb from '../../components/MyBreadcrumb'
-import MyCover from '../../components/MyCover'
+// import MyCover from '../../components/MyCover'
 export default {
   name: 'ArticleIndex',
   props: {},
@@ -133,8 +127,8 @@ export default {
   },
   components: {
     MyChannels,
-    MyBreadcrumb,
-    MyCover
+    MyBreadcrumb
+    // MyCover
   },
   computed: {},
   watch: {},

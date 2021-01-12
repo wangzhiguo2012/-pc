@@ -22,18 +22,19 @@
           </div>
           <el-row :gutter="10" class="img_list">
             <el-col
+              v-for="image in images"
+              :key="image.id"
+              :class="{selected: image.url===selectedImageUrl}"
               class="img-item"
               :xs="12"
               :sm="6"
               :lg="4"
-              v-for="image in iamges"
-              :key="image.id"
-              :class="{selected:iamge.url===selectedImageUrl}"
+
             >
               <el-image
               @click.native="hImageClick(image)"
                 style="height: 100px"
-                src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+                :src="image.url"
                 fit="cover"
               ></el-image>
             </el-col>
@@ -68,9 +69,8 @@
       </el-tabs>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-butoon type="primary" @click="hConfirmImage = false"
-          >确定</el-butoon
-        >
+        <el-button type="primary" @click="hConfirmImage = false"
+          >确定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -92,7 +92,7 @@ export default {
       total_count: 0,
       collect: false,
       imgSrc: null,
-      hearders: {
+      headers: {
         Authorization: 'bearer $get{getUser().token}'
       }
     }
@@ -149,8 +149,6 @@ export default {
       this.$message.success('上传素材成功')
     },
     hConfirmImage () {
-      console.log(this.activeName)
-      // 校验，根据当前所处不同的tab选项卡，做不同判断;
       if (this.activeName === 'iamge') {
         // 素材库，有没有选中图
         if (!this.selectedImageUrl) {

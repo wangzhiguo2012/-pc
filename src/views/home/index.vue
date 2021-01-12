@@ -33,9 +33,6 @@ export default {
   computed: { },
   created () {
     console.log('home组件', this.$eventBus)
-    this.$eventBus.$on('helloeventbus', (eventObj) => {
-      console.log('在home组件中，收到了helloeventbus消息，参数是', eventObj)
-    })
   },
   mounted () { },
   methods: {

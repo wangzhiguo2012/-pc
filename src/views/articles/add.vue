@@ -22,6 +22,13 @@
             <el-radio label="自动"></el-radio>
           </el-radio-group>
         </el-form-item>
+        <el-form-item v-if="article.cover.type>0" label="">
+          <el-row :gutter="10">
+            <el-col v-for="(item,idx) in article.cover.type" :key="idx" :xs="8" :sm="6" :md="6" :lg="4">
+              <my-cover v-model="article.cover.images[idx]"></my-cover>
+            </el-col>
+          </el-row>
+        </el-form-item>
         <my-channels v-model="article.channel_id"></my-channels>
 
         <el-form-item>
@@ -34,15 +41,16 @@
 </template>
 
 <script>
+import MyCover from '@/components/MyCover'
 import MyChannels from '@/components/MyChannels'
 import MyBreadcrumb from '../../components/MyBreadcrumb.vue'
-import { getArticleChannels, addArticle } from '@/api/article'
+import { addArticle } from '@/api/article'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
 export default {
-  name: 'addArticle',
+  name: 'AddArticle',
   props: {},
   data () {
     return {
@@ -89,15 +97,16 @@ export default {
   components: {
     quillEditor,
     MyBreadcrumb,
-    MyChannels
+    MyChannels,
+    MyCover
   },
   computed: {},
   created () {
-    this.loadChannels()
+    // this.loadChannels()
   },
   mounted () {},
   methods: {
-    async hAddArticle (isDraft) {
+    hAddArticle (isDraft) {
       this.$refs.form.validate(async (valid) => {
         if (valid) {
           try {

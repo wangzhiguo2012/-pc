@@ -16,7 +16,8 @@
                           <el-button type="primary" plain size="small">+关注</el-button>
                       </div>
                   </div>
-                  <el-pagination background layout="prev,pager,next"
+                  <el-pagination background
+                  layout="prev,pager,next"
                   :page-size="per_page"
                   @current-change="hChangePage"
                   :total="total"></el-pagination>
@@ -25,8 +26,6 @@
                   <div ref="main" style="width: 600px;height:400px"></div>
               </el-tab-pane>
           </el-tabs>
-          <el-pagination background layout="prev,page,next"
-          :page-size="per_page" @current-change="hChangePage" :total="total"></el-pagination>
       </el-card>
   </div>
 </template>

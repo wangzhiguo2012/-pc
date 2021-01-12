@@ -38,7 +38,7 @@
           <i class="el-icon-setting"></i>
           <span slot="title">粉丝管理</span>
         </el-menu-item>
-        <el-menu-item index="/settings">
+        <el-menu-item index="/setting">
           <i class="el-icon-setting"></i>
           <span slot="title">个人设置</span>
         </el-menu-item>
@@ -87,6 +87,18 @@ export default {
   },
   computed: {},
   created () {
+    console.log('Layout组件创建完成', this.$eventBus)
+    // 先监听事件，当在用户设置成功之后，更新名字，
+    this.$eventBus.$on('update_user_name', newName => {
+      console.log('在Layout组件中，收到了update_user_name消息，参数是', newName)
+      // 把newName更新到数据项中
+      this.user.name = newName
+      // 先监听事件，当在用户修改头像成功之后，更新头像
+      this.$eventBus.$on('update_user_photo', newPhoto => {
+        console.log('在layout组件中，收到了update_user_Photo消息，参数是', newPhoto)
+        this.user.photo = newPhoto
+      })
+    })
     this.setUserProfile()
   },
   methods: {

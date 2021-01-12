@@ -21,3 +21,19 @@ export const userGetProfile = () => {
 
   })
 }
+// 修改用户信息
+// 直接传入一个对象data:{name,email,info}
+export const modUserProfile = data => {
+  return ajax({
+    method: 'PATCH',
+    url: '/mp/v1_0/user/profile',
+    data
+  })
+}
+export const modUserImage = (formData) => {
+  return ajax({
+    method: 'PATCH',
+    url: '/mp/v1_0/user/photo',
+    data: formData
+  })
+}

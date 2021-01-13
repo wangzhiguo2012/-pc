@@ -26,7 +26,7 @@
               <el-input v-model="userInfo.email"></el-input>
             </el-form-item>
             <el-form-item>
-                <button @click="updateUser" type="primary">保存设置</button>
+                <button @click="hSave" type="primary">保存设置</button>
             </el-form-item>
           </el-form>
         </el-col>
@@ -68,6 +68,15 @@ export default {
     this.loadUserInfo()
   },
   methods: {
+    hTestEventBus () {
+      // 通过事件总线发布事件
+      // 格式： 事件总线.$emit('事件名', 携带的参数)
+      console.log('事件总线', this.$eventBus)
+      this.$eventBus.$emit('helloeventbus', {
+        a: 1,
+        b: 2
+      })
+    },
     async loadUserInfo () {
       const result = await userGetProfile()
       this.userInfo = result.data.data
